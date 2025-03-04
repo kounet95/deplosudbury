@@ -1,43 +1,107 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sondage - Disponibilité Meeting Guinée</title>
+    <style>
+        /* Styles de base */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #5B3B1D; /* Marron */
+            color: #D4E7C5; /* Vert clair */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Conteneur principal */
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #3D2814; /* Marron foncé */
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
 
-on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["gh-pages"]
+        /* Titre */
+        h2 {
+            color: #D4E7C5;
+        }
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+        /* Image */
+        .image-container img {
+            width: 100%;
+            max-width: 400px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+        }
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+        /* Champs de formulaire */
+        input, select, textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+        /* Bouton de soumission */
+        button {
+            background-color: #FFD700; /* Jaune or */
+            color: #3D2814;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
 
-jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        button:hover {
+            background-color: #E6C200;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>📅 Sondage - Disponibilité pour le Meeting Guinée</h2>
+        <p>Merci de remplir ce formulaire pour nous informer de votre disponibilité.</p>
+
+        <!-- Image au centre -->
+        <div class="image-container">
+            <!-- Lien d'image corrigé pour afficher correctement l'image -->
+            <img src="https://raw.githubusercontent.com/kounet95/portofolio-images/main/sudbury.png" alt="Ramadan & Meeting Guinée">
+        </div>
+
+        <!-- Formulaire -->
+        <form action="https://formspree.io/f/xeoeydlo" method="POST">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">E-mail :</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="availability">Êtes-vous disponible ?</label>
+            <select id="availability" name="availability">
+                <option value="">-- Sélectionnez --</option>
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+                <option value="peut-être">Peut-être</option>
+            </select>
+        
+            <label for="comments">Commentaires :</label>
+            <textarea id="comments" name="comments" rows="4"></textarea>
+        
+            <button type="submit">Envoyer</button>
+        </form>
+
+        <!-- Message de confirmation qui s'affichera après soumission -->
+        <p id="confirmationMessage" style="color: #FFD700; font-weight: bold; display: none;">
+            ✅ Merci ! Votre réponse a été enregistrée.
+        </p>
+    </div>
+
+</body>
+</html>
